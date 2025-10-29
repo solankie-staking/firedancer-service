@@ -1,0 +1,15 @@
+[Unit]
+Description=Solana Validator
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/bin/bash -c ' \
+	/home/ubuntu/firedancer/build/native/gcc/bin/fdctl configure init all --config /home/ubuntu/firedancer/config.toml && \
+	/home/ubuntu/firedancer/build/native/gcc/bin/fdctl run --config /home/ubuntu/firedancer/config.toml'
+
+[Install]
+WantedBy=multi-user.target
